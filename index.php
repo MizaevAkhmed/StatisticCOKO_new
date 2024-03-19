@@ -1,6 +1,9 @@
 <?php
 include_once("setting.php");
 include_once("query.php");
+require("vendor/autoload.php");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

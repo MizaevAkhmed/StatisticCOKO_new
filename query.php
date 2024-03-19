@@ -48,7 +48,11 @@ if ($_GET['x']) {
         $objPHPExcel->getActiveSheet()->setCellValue('B' . $rowNumber, $row['Name']);
         $objPHPExcel->getActiveSheet()->setCellValue('C' . $rowNumber, $row['Количество учащихся, зарегистрированных в базе']);
         $objPHPExcel->getActiveSheet()->setCellValue('D' . $rowNumber, $row['Количество участников диагностики']);
-        $objPHPExcel->getActiveSheet()->setCellValue('E' . $rowNumber, $row['Незачет']);
+        $value = $row['Незачет'] / $row['Количество участников диагностики'] * 100;
+        $objPHPExcel->getActiveSheet()->setCellValue('E' . $rowNumber, $value);
+        $objPHPExcel->getActiveSheet()->getStyle('E' . $rowNumber)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE);
+
+        // $objPHPExcel->getActiveSheet()->setCellValue('E' . $rowNumber, $row['Незачет']/$row['Количество участников диагностики']*100);
         $objPHPExcel->getActiveSheet()->setCellValue('F' . $rowNumber, $row['Зачет']);
         $rowNumber++;
     }
