@@ -1,6 +1,6 @@
 <?php
 include_once("setting.php");
-include_once("query.php");
+require("query.php");
 require("vendor/autoload.php");
 
 
@@ -12,7 +12,6 @@ require("vendor/autoload.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/favicon.ico">
-    <!-- <link rel="stylesheet" href="../css/main.css"> -->
     <title>Document</title>
 </head>
 <body>

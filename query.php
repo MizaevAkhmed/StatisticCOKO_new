@@ -1,8 +1,21 @@
 <?php 
 include("setting.php");
-include("./include/Classes/PHPExcel.php");
 
-if ($_GET['x']) {
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+$spreadsheet = IOFactory::load('template.xlsx');
+
+$worksheet = $spreadsheet->getActiveSheet();
+
+$worksheet->getCell('A1')->setValue('John');
+$worksheet->getCell('A2')->setValue('Smith');
+
+$writer = new Xlsx($spreadsheet);
+$writer->save('write.xlsx');
+
+/*if ($_GET['x']) {
     $projectTestId = 3280;
     $pass = 7;
 
@@ -82,4 +95,4 @@ if ($_GET['x']) {
     $objWriter->save('output.xlsx');
 
     echo ('output.xlsx');
-}
+}*/
