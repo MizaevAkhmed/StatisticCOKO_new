@@ -1,5 +1,6 @@
 {
     "require": {
-        "phpoffice/phpspreadsheet": "v1.13"
+        "phpoffice/phpspreadsheet": "v1.13",
+        "larapack/dd": "1.*"
     }
 }
