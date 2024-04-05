@@ -1,0 +1,21 @@
+body{
+    background-color: rgba(144, 147, 160, 0.199);
+}
+
+.project{
+    font-size: 22px;
+    color: black;
+    font-family:'Times New Roman', Times, serif;
+}
+
+.btn-primary{
+    width: 100px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.table{ 
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    color: aqua;
+}

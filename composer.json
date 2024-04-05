@@ -1,6 +1,17 @@
 {
+    "name": "akhmad/statistic-coko-1",
+    "autoload": {
+        "psr-4": {
+            "Akhmad\\StatisticCoko1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Akhmed"
+        }
+    ],
     "require": {
-        "phpoffice/phpspreadsheet": "v1.13",
-        "larapack/dd": "1.*"
+        "larapack/dd": "1.*",
+        "phpoffice/phpspreadsheet": "1.13"
     }
 }
