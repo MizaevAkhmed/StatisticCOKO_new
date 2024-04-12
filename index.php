@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("setting.php");
 require("query.php");
 require("vendor/autoload.php");
@@ -24,11 +25,11 @@ require("vendor/autoload.php");
                     <form action="/query.php" method="post">
                         <div class="mb-3">
                             <label for="project" class="form-label">Test ID</label>
-                            <input type="text" class="form-control" id="projectTestId">
+                            <input type="text" class="form-control" id="projectTestId" name="projectTestId">
                         </div>
                         <div class="mb-3">
                             <label for="project" class="form-label">Project Pass</label>
-                            <input type="text" class="form-control" id="projectPass">
+                            <input type="text" class="form-control" id="projectPass" name="projectPass">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
