@@ -12,4 +12,4 @@ if($conn === false) {
     die(FormatErrors(sqlsrv_errors()));
 }
 
-var_dump($conn);
+// var_dump($conn);

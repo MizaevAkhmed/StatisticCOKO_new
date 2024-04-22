@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = sqlsrv_query($conn, $sql_count);
         
         while ($row_data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-            dd($row_data);
+            // dd($row_data);
             while ($row_data2 = sqlsrv_fetch_array($stmt_subject, SQLSRV_FETCH_ASSOC)){
                 $sheet1->setCellValue('A1', 'Дата:');
                 $sheet1->setCellValue('A2', $row_data2['Name']);
@@ -344,7 +344,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $sheet3->setCellValue('J4' , 'Размер');
 
-            $sheet3->setCellValue('J5' , '19');
+            $sheet3->setCellValue('J5' , '18');
         }
         $sheet3->setCellValue('A' . $row3, $count_average_mark);
         $sheet3->setCellValue('B' . $row3, $average_marks_data['Район']);

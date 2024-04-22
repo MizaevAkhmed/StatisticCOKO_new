@@ -1,8 +1,9 @@
 <?php
 session_start();
-include_once("setting.php");
-require("query.php");
-require("vendor/autoload.php");
+require_once("setting.php");
+require_once("query.php");
+require_once("vendor/autoload.php");
+// require_once("get_tests.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,22 +23,52 @@ require("vendor/autoload.php");
         <div class="wrapper">
             <div class="container">
                 <div class="project_dannie">
-                    <form action="/query.php" method="post">
+                    <form id="excelFile" action="/query.php" method="post">
                         <div class="mb-3">
-                            <label for="project" class="form-label">Test ID</label>
-                            <input type="text" class="form-control" id="projectTestId" name="projectTestId">
+                            <label for="project" class="form-label">Название проекта</label>
+                            <select class="form-select" id="projectSelect" name="projectSelect">
+                                <option>Выберите проект</option>
+                                <?php
+                                    // Запрос для выбора всех проектов из базы данных
+                                    $sql_projects = "SELECT Id, Name FROM Projects";
+                                    $result = sqlsrv_query($conn, $sql_projects);
+
+                                    // Вывод списка проектов
+                                    while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                                        echo "<option value='".$row['Id']."'>".$row['Name']."</option>";
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="project" class="form-label">Project Pass</label>
-                            <input type="text" class="form-control" id="projectPass" name="projectPass">
+                            <label for="test" class="form-label">Тесты проекта</label>
+                            <select class="form-select" id="testSelect" name="testSelect">
+                                <option selected>Выберите проект сначала</option>
+                                <?php
+                                    $sql_project_tests = "SELECT Id, Name FROM projectTest WHERE ProjectId = ?";
+                                    $params = array($projectId);
+                                    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+                                    $ = sqlsrv_query($conn, $sql, $params, $options);
+
+                                    // Вывод списка тестов
+                                    $options = "<option value=''>Выберите тест</option>";
+                                    while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+                                    $options .= "<option value='".$row['Id']."'>".$row['Name']."</option>";
+                                    }
+                                ?>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="mb-3">
+                                <label for="project" class="form-label">Проходной балл</label>
+                                <input type="text" class="form-control" id="projectPass" name="projectPass">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="generateBtn">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-<script src="js/script.js"></script>
-<script src="js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
