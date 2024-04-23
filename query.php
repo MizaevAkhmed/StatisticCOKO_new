@@ -14,9 +14,7 @@ use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $projectTestId = $_POST['projectTestId'];
     $pass = $_POST['projectPass'];
-    // $projectTestId = 3198;
-    // $pass = 7;
-    $grade = 0;
+    // $grade = $_POST['grade'];
     $levels = 1;
 
     $LowerLevelMin = 0;
@@ -391,7 +389,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     sqlsrv_close($conn);
 
     $writer = new Xlsx($spreadsheet);
-    $writer->save('output.xlsx');
+    $writer->save('/files/output.xlsx');
     header("Location: /index.php");
 }
 ?>

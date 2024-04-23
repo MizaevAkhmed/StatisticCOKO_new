@@ -3,7 +3,7 @@ session_start();
 require_once("setting.php");
 require_once("query.php");
 require_once("vendor/autoload.php");
-// require_once("get_tests.php");
+require_once("get_tests.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,50 +20,66 @@ require_once("vendor/autoload.php");
 </head>
 <body>
     <div class="project">
-        <div class="wrapper">
-            <div class="container">
+        <div class="container">
                 <div class="project_dannie">
-                    <form id="excelFile" action="/query.php" method="post">
-                        <div class="mb-3">
-                            <label for="project" class="form-label">Название проекта</label>
-                            <select class="form-select" id="projectSelect" name="projectSelect">
-                                <option>Выберите проект</option>
-                                <?php
-                                    // Запрос для выбора всех проектов из базы данных
-                                    $sql_projects = "SELECT Id, Name FROM Projects";
-                                    $result = sqlsrv_query($conn, $sql_projects);
-
-                                    // Вывод списка проектов
-                                    while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                                        echo "<option value='".$row['Id']."'>".$row['Name']."</option>";
-                                    }
-                                ?>
-                            </select>
+                    <div class="mb-3">
+                        <label for="project" class="form-label">Название проекта</label>
+                        <select class="form-control" id="select_EGE_OGE" name="select_EGE_OGE">
+                            <option value="0">Выберите проект</option>
+                            <option value="51">Я сдам ОГЭ</option>
+                            <option value="54">Я сдам ЕГЭ</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="test" class="form-label">Тесты проекта</label>
+                        <select class="form-select" id="projectTestSelect" name="projectTestSelect">
+                            <option value='0'>Выберите тест</option>;
+                            <?php
+                                echo $options;
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="project" class="form-label">Проходной балл</label>
+                        <input type="text" class="form-control" id="projectPass" name="projectPass">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Зачет/Незачет
+                        </label>
                         </div>
-                        <div class="mb-3">
-                            <label for="test" class="form-label">Тесты проекта</label>
-                            <select class="form-select" id="testSelect" name="testSelect">
-                                <option selected>Выберите проект сначала</option>
-                                <?php
-                                    $sql_project_tests = "SELECT Id, Name FROM projectTest WHERE ProjectId = ?";
-                                    $params = array($projectId);
-                                    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
-                                    $ = sqlsrv_query($conn, $sql, $params, $options);
-
-                                    // Вывод списка тестов
-                                    $options = "<option value=''>Выберите тест</option>";
-                                    while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-                                    $options .= "<option value='".$row['Id']."'>".$row['Name']."</option>";
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                            <div class="mb-3">
-                                <label for="project" class="form-label">Проходной балл</label>
-                                <input type="text" class="form-control" id="projectPass" name="projectPass">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            По уровням
+                        </label>
+                    </div>
+                    <div class="table-levels" style="display:none !important;" id="levels">
+                        <div class="table-levels-container">
+                            <div class="table-cell">
+                                <label for="project" class="form-label">Низкий уровень</label>
+                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
+                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
                             </div>
-                            <button type="submit" class="btn btn-primary" id="generateBtn">Submit</button>
-                    </form>
+                            <div class="table-cell">
+                                <label for="project" class="form-label">Базовый уровень</label>
+                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
+                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
+                            </div>
+                            <div class="table-cell">
+                                <label for="project" class="form-label">Выше базового</label>
+                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
+                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
+                            </div>
+                            <div class="table-cell">
+                                <label for="project" class="form-label">Высокий уровень</label>
+                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
+                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="generateBtn">Submit</button>
                 </div>
             </div>
         </div>

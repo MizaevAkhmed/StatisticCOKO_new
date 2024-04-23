@@ -1,21 +1,21 @@
-body{
+body {
     background-color: rgba(144, 147, 160, 0.199);
 }
 
-.project{
+.project {
     font-size: 22px;
     color: black;
     font-family:'Times New Roman', Times, serif;
 }
 
-.btn-primary{
+.btn-primary {
     width: 100px;
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
 }
 
-.table{ 
-    font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
+.table-levels-container {
+    display: flex !important;
+    align-items: space-beetween !important;
     color: aqua;
 }
