@@ -12,19 +12,22 @@ use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 //need to get it from the front
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $levels = $_POST['levels'];
     $projectTestId = $_POST['projectTestId'];
-    $pass = $_POST['projectPass'];
-    // $grade = $_POST['grade'];
-    $levels = 1;
-
-    $LowerLevelMin = 0;
-    $LowerLevelMax = 7;
-    $BasicLevelMin = 8;
-    $BasicLevelMax = 11;
-    $UpBasicLevelMin = 12;
-    $UpBasicLevelMax = 15;
-    $HighLevel = 16;
-
+    if($levels == 1){
+        $LowerLevelMin = $_POST['low-level-min'];
+        $LowerLevelMax = $_POST['low-level-max'];
+        $BasicLevelMin = $_POST['base-level-min'];
+        $BasicLevelMax = $_POST['base-level-max'];
+        $UpBasicLevelMin = $_POST['above-base-level-min'];
+        $UpBasicLevelMax = $_POST['above-base-level-max'];
+        $HighLevelMin = $_POST['high-level-min'];
+        $grade = 0;
+    }else{
+        $pass = $_POST['projectPass'];
+        $grade = 1;
+    }
+    
     // create xlsx book
     $spreadsheet = new Spreadsheet();
 

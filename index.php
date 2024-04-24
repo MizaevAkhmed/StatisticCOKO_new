@@ -24,7 +24,7 @@ require_once("get_tests.php");
                 <div class="project_dannie">
                     <div class="mb-3">
                         <label for="project" class="form-label">Название проекта</label>
-                        <select class="form-control" id="select_EGE_OGE" name="select_EGE_OGE">
+                        <select class="form-select" id="select_EGE_OGE" name="select_EGE_OGE">
                             <option value="0">Выберите проект</option>
                             <option value="51">Я сдам ОГЭ</option>
                             <option value="54">Я сдам ЕГЭ</option>
@@ -39,10 +39,6 @@ require_once("get_tests.php");
                             ?>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="project" class="form-label">Проходной балл</label>
-                        <input type="text" class="form-control" id="projectPass" name="projectPass">
-                    </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                         <label class="form-check-label" for="exampleRadios1">
@@ -55,31 +51,45 @@ require_once("get_tests.php");
                             По уровням
                         </label>
                     </div>
-                    <div class="table-levels" style="display:none !important;" id="levels">
+                    <div class="passing-score" id="passing-score" name="passing-score" style="display: none;">
+                        <div class="mb-3">
+                            <label for="project" class="form-label">Проходной балл</label>
+                            <input type="text" class="form-control" id="projectPass" name="projectPass">
+                        </div>
+                    </div>
+                    <div class="table-levels" id="levels" name="levels" style="display: none;">
                         <div class="table-levels-container">
                             <div class="table-cell">
                                 <label for="project" class="form-label">Низкий уровень</label>
-                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
-                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
+                                <section>
+                                    <input type="text" class="form-control-level" id="low-level-min">
+                                    <input type="text" class="form-control-level" id="low-level-max">
+                                </section>
                             </div>
                             <div class="table-cell">
                                 <label for="project" class="form-label">Базовый уровень</label>
-                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
-                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
+                                <section>
+                                    <input type="text" class="form-control-level" id="base-level-min">
+                                    <input type="text" class="form-control-level" id="base-level-max">
+                                </section>
                             </div>
                             <div class="table-cell">
                                 <label for="project" class="form-label">Выше базового</label>
-                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
-                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
+                                <section>
+                                    <input type="text" class="form-control-level" id="above-base-level-min">
+                                    <input type="text" class="form-control-level" id="above-base-level-max">
+                                </section>
                             </div>
                             <div class="table-cell">
                                 <label for="project" class="form-label">Высокий уровень</label>
-                                <input type="text" class="form-control-levels" id="number-input-field-for-low-level">
-                                <input type="text" class="form-control-levels" id="input-field-to-number-for-low-level">
+                                <section>
+                                    <input type="text" class="form-control-level" id="high-level-min">
+                                    <!-- <input type="text" class="form-control-level" id="high-level-max"> -->
+                                </section>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="generateBtn">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="generateBtn">Download</button>
                 </div>
             </div>
         </div>

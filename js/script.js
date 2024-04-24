@@ -16,7 +16,17 @@ $(document).ready(function () {
   });
 
   $('input[name="exampleRadios"]').change(function(){
+    if ($('#exampleRadios1').is(':checked')) {
+      var option = $(this).val();
+      $('#passing-score').css('display', 'block');
+    } else {
+      $('#passing-score').css('display', 'none');
+    }
+  });
+
+  $('input[name="exampleRadios"]').change(function(){
     if ($('#exampleRadios2').is(':checked')) {
+      var option = $(this).val();
       $('#levels').css('display', 'block');
     } else {
       $('#levels').css('display', 'none');
@@ -27,10 +37,29 @@ $(document).ready(function () {
     e.preventDefault();
     let projectTestId = $('#projectTestSelect').val();
     let projectPass = $('#projectPass').val();
-    let levels = $('#projectLevels').val();
+    // let levels = 1;
+    let lowLevelMin = $('#low-level-min').val();
+    let lowLevelMax = $('#low-level-max').val();
+    let baseLevelMin = $('#base-level-min').val();
+    let baseLevelMax = $('#base-level-max').val();
+    let aboveBaseLevelMin = $('#above-base-level-min').val();
+    let aboveBaseLevelMax = $('#above-base-level-max').val();
+    let highLevelMin = $('#high-level-min').val();
+
     $.ajax({
         url: "../query.php",
-        data: { projectTestId: projectTestId, pass: projectPass },
+        data: { 
+          projectTestId: projectTestId, 
+          pass: projectPass,
+          levels: levels,
+          lowLevelMin: lowLevelMin, 
+          lowLevelMax: lowLevelMax, 
+          baseLevelMin: baseLevelMin,
+          baseLevelMax: baseLevelMax,
+          aboveBaseLevelMin: aboveBaseLevelMin,
+          aboveBaseLevelMax: aboveBaseLevelMax,
+          highLevelMin: highLevelMin
+        },
         type: "POST",
         success: function (data) {
           console.log(data);
